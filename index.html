@@ -1,25 +1,29 @@
 <!DOCTYPE html>
 <html>
-
   <head>
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="description" content="Security-util : Spring security utilitaries">
 
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+    <link rel="stylesheet" type="text/css" href="http://remi-san.github.io/stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="http://remi-san.github.io/stylesheets/pygment_trac.css" media="screen">
 
-    <title>Security-util</title>
+    <title>Security-Util by Remi San</title>
+	
+	<meta name="description" content="JavaEE - Spring Security Model Utilitaries">
+	<meta name="keywords" content="Java,JavaEE,J2E,J2EE,Spring,Security,Utilitaries" >
+	<meta name="author" content="Remi San<remi.san@gmail.com>">
+	
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   </head>
 
   <body>
-
-    <!-- HEADER -->
+	<!-- HEADER -->
     <div id="header_wrap" class="outer">
         <header class="inner">
           <a id="forkme_banner" href="https://github.com/remi-san/security-util">View on GitHub</a>
 
-          <h1 id="project_title">Security-util</h1>
-          <h2 id="project_tagline">Spring security utilitaries</h2>
+          <h1 id="project_title">Security-Util</h1>
+          <h2 id="project_tagline">Spring Security utilitaries</h2>
 
             <section id="downloads">
               <a class="zip_download_link" href="https://github.com/remi-san/security-util/zipball/master">Download this project as a .zip file</a>
@@ -30,23 +34,326 @@
 
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <h1>
-<a name="security-util" class="anchor" href="#security-util"><span class="octicon octicon-link"></span></a>security-util</h1>
-
-<p>Spring security utilitaries</p>
-      </section>
+		<section id="main_content" class="inner">
+			<p class="warning">
+				This lib has a dependency on <a href="http://remi-san.github.io/security-model/">Security-Model</a> &amp; <a href="http://remi-san.github.io/base-app-util/">Base-App-Util</a>.
+			</p>
+			<h3>Package content /</h3>
+			<ul>
+				<li class="directory">
+					<span class="directory-name" id="src/main/java">src/main/java</span>
+					<ul>
+						<li class="package">
+							<span class="package-name" id="net.remisan.security.acl">net.remisan.security.acl</span>
+							<ul>
+							<li class="strong" id="AclSecurityUtil.java">
+								<span class="file">AclSecurityUtil.java</span>
+								<p class="file-description"></p>
+							</li>
+							<li class="strong" id="AclSecurityUtilImpl.java">
+								<span class="file">AclSecurityUtilImpl.java</span>
+								<p class="file-description"></p>
+							</li>
+							</ul>
+						</li>
+						<li class="package">
+							<span class="package-name" id="net.remisan.security.aop">net.remisan.security.aop</span>
+							<ul>
+							<li class="strong" id="SecuredAspect.java">
+								<span class="file">SecuredAspect.java</span>
+								<p class="file-description"></p>
+							</li>
+							</ul>
+						</li>
+						<li class="package">
+							<span class="package-name" id="net.remisan.security.controllers.admin">net.remisan.security.controllers.admin</span>
+							<ul>
+							<li class="strong" id="AdminBaseController.java">
+								<span class="file">AdminBaseController.java</span>
+								<p class="file-description"></p>
+							</li>
+							</ul>
+						</li>
+						<li class="package">
+							<span class="package-name" id="net.remisan.security.controllers.errors">net.remisan.security.controllers.errors</span>
+							<ul>
+							<li class="strong" id="AccessDeniedHandlerImpl.java">
+								<span class="file">AccessDeniedHandlerImpl.java</span>
+								<p class="file-description"></p>
+							</li>
+							<li class="strong" id="ErrorController.java">
+								<span class="file">ErrorController.java</span>
+								<p class="file-description"></p>
+							</li>
+							</ul>
+						</li>
+						<li class="package">
+							<span class="package-name" id="net.remisan.security.controllers.security">net.remisan.security.controllers.security</span>
+							<ul>
+							<li class="strong" id="SecurityNavigation.java">
+								<span class="file">SecurityNavigation.java</span>
+								<p class="file-description"></p>
+							</li>
+							</ul>
+						</li>
+						<li class="package">
+							<span class="package-name" id="net.remisan.security.email">net.remisan.security.email</span>
+							<ul>
+							<li class="strong" id="AbstractEmailManager.java">
+								<span class="file">AbstractEmailManager.java</span>
+								<p class="file-description"></p>
+							</li>
+							<li class="strong" id="EmailManager.java">
+								<span class="file">EmailManager.java</span>
+								<p class="file-description"></p>
+							</li>
+							</ul>
+						</li>
+						<li class="package">
+							<span class="package-name" id="net.remisan.security.email.impl">net.remisan.security.email.impl</span>
+							<ul>
+							<li class="strong" id="DefaultEmailSender.java">
+								<span class="file">DefaultEmailSender.java</span>
+								<p class="file-description"></p>
+							</li>
+							</ul>
+						</li>
+						<li class="package">
+							<span class="package-name" id="net.remisan.security.form">net.remisan.security.form</span>
+							<ul>
+							<li class="strong" id="BaseInscriptionForm.java">
+								<span class="file">BaseInscriptionForm.java</span>
+								<p class="file-description"></p>
+							</li>
+							<li class="strong" id="BasePasswordForm.java">
+								<span class="file">BasePasswordForm.java</span>
+								<p class="file-description"></p>
+							</li>
+							<li class="strong" id="InscriptionForm.java">
+								<span class="file">InscriptionForm.java</span>
+								<p class="file-description"></p>
+							</li>
+							<li class="strong" id="PasswordForm.java">
+								<span class="file">PasswordForm.java</span>
+								<p class="file-description"></p>
+							</li>
+							</ul>
+						</li>
+						<li class="package">
+							<span class="package-name" id="net.remisan.security.manager">net.remisan.security.manager</span>
+							<ul>
+							<li class="strong" id="SecurityRoleManager.java">
+								<span class="file">SecurityRoleManager.java</span>
+								<p class="file-description"></p>
+							</li>
+							<li class="strong" id="SecurityUserManager.java">
+								<span class="file">SecurityUserManager.java</span>
+								<p class="file-description"></p>
+							</li>
+							</ul>
+						</li>
+						<li class="package">
+							<span class="package-name" id="net.remisan.security.manager.impl">net.remisan.security.manager.impl</span>
+							<ul>
+							<li class="strong" id="SecurityRoleManagerImpl.java">
+								<span class="file">SecurityRoleManagerImpl.java</span>
+								<p class="file-description"></p>
+							</li>
+							<li class="strong" id="SecurityUserManagerImpl.java">
+								<span class="file">SecurityUserManagerImpl.java</span>
+								<p class="file-description"></p>
+							</li>
+							</ul>
+						</li>
+						<li class="package">
+							<span class="package-name" id="net.remisan.security.permission">net.remisan.security.permission</span>
+							<ul>
+							<li class="strong" id="AclPermissionEvaluator.java">
+								<span class="file">AclPermissionEvaluator.java</span>
+								<p class="file-description"></p>
+							</li>
+							<li class="strong" id="PermissionFactory.java">
+								<span class="file">PermissionFactory.java</span>
+								<p class="file-description"></p>
+							</li>
+							<li class="strong" id="PermissionUtil.java">
+								<span class="file">PermissionUtil.java</span>
+								<p class="file-description"></p>
+							</li>
+							<li class="strong" id="SecurityPermission.java">
+								<span class="file">SecurityPermission.java</span>
+								<p class="file-description"></p>
+							</li>
+							</ul>
+						</li>
+						<li class="package">
+							<span class="package-name" id="net.remisan.security.registry">net.remisan.security.registry</span>
+							<ul>
+							<li class="strong" id="SecurityServiceRegistry.java">
+								<span class="file">SecurityServiceRegistry.java</span>
+								<p class="file-description"></p>
+							</li>
+							</ul>
+						</li>
+						<li class="package">
+							<span class="package-name" id="net.remisan.security.service">net.remisan.security.service</span>
+							<ul>
+							<li class="strong" id="RoleService.java">
+								<span class="file">RoleService.java</span>
+								<p class="file-description"></p>
+							</li>
+							<li class="strong" id="UserService.java">
+								<span class="file">UserService.java</span>
+								<p class="file-description"></p>
+							</li>
+							</ul>
+						</li>
+						<li class="package">
+							<span class="package-name" id="net.remisan.security.service.impl">net.remisan.security.service.impl</span>
+							<ul>
+							<li class="strong" id="CustomUserDetailsService.java">
+								<span class="file">CustomUserDetailsService.java</span>
+								<p class="file-description"></p>
+							</li>
+							<li class="strong" id="RoleServiceImpl.java">
+								<span class="file">RoleServiceImpl.java</span>
+								<p class="file-description"></p>
+							</li>
+							<li class="strong" id="UserServiceImpl.java">
+								<span class="file">UserServiceImpl.java</span>
+								<p class="file-description"></p>
+							</li>
+							</ul>
+						</li>
+						<li class="package">
+							<span class="package-name" id="net.remisan.security.util">net.remisan.security.util</span>
+							<ul>
+							<li class="strong" id="BaseUtil.java">
+								<span class="file">BaseUtil.java</span>
+								<p class="file-description"></p>
+							</li>
+							<li class="strong" id="ModelUtil.java">
+								<span class="file">ModelUtil.java</span>
+								<p class="file-description"></p>
+							</li>
+							<li class="strong" id="UserUtil.java">
+								<span class="file">UserUtil.java</span>
+								<p class="file-description"></p>
+							</li>
+							</ul>
+						</li>
+						<li class="package">
+							<span class="package-name" id="net.remisan.security.util.factory">net.remisan.security.util.factory</span>
+							<ul>
+							<li class="strong" id="ModelUtilFactory.java">
+								<span class="file">ModelUtilFactory.java</span>
+								<p class="file-description"></p>
+							</li>
+							</ul>
+						</li>
+						<li class="package">
+							<span class="package-name" id="net.remisan.security.validation">net.remisan.security.validation</span>
+							<ul>
+							<li class="strong" id="InscriptionFormValidator.java">
+								<span class="file">InscriptionFormValidator.java</span>
+								<p class="file-description"></p>
+							</li>
+							<li class="strong" id="ResetPasswordFormValidator.java">
+								<span class="file">ResetPasswordFormValidator.java</span>
+								<p class="file-description"></p>
+							</li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+				<li class="directory">
+					<span class="directory-name" id="src/main/resources">src/main/resources</span>
+					<ul>
+						<li class="package">
+							<span class="package-name" id="META-INF/spring">META-INF/spring</span>
+							<ul>
+							<li class="strong" id="security-acl-context.xml">
+								<span class="file">security-acl-context.xml</span>
+								<p class="file-description"></p>
+							</li>
+							<li class="strong" id="security-aop.xml">
+								<span class="file">security-aop.xml</span>
+								<p class="file-description"></p>
+							</li>
+							<li class="strong" id="security-context.xml">
+								<span class="file">security-context.xml</span>
+								<p class="file-description"></p>
+							</li>
+							<li class="strong" id="security-hibernate-context.xml">
+								<span class="file">security-hibernate-context.xml</span>
+								<p class="file-description"></p>
+							</li>
+							<li class="strong" id="security-mail.xml">
+								<span class="file">security-mail.xml</span>
+								<p class="file-description"></p>
+							</li>
+							<li class="strong" id="security-mvc-view.xml">
+								<span class="file">security-mvc-view.xml</span>
+								<p class="file-description"></p>
+							</li>
+							<li class="strong" id="security-objects-context.xml">
+								<span class="file">security-objects-context.xml</span>
+								<p class="file-description"></p>
+							</li>
+							<li class="strong" id="spring-security.xml">
+								<span class="file">spring-security.xml</span>
+								<p class="file-description"></p>
+							</li>
+							</ul>
+						</li>
+						<li class="package">
+							<span class="package-name" id="sql">sql</span>
+							<ul>
+							<li class="strong" id="acl.sql">
+								<span class="file">acl.sql</span>
+								<p class="file-description"></p>
+							</li>
+							<li class="strong" id="credentials.sql">
+								<span class="file">credentials.sql</span>
+								<p class="file-description"></p>
+							</li>
+							</ul>
+						</li>
+						<li class="package">
+							<span class="package-name" id="/">/</span>
+							<ul>
+							<li class="strong" id="log4j.xml">
+								<span class="file">log4j.xml</span>
+								<p class="file-description"></p>
+							</li>
+							</ul>
+						</li>
+					</ul>
+				</li>
+			</ul>
+			<p>
+				<a href="http://remi-san.github.io/">Back to homepage</a>
+			</p>
+        </section>
     </div>
-
-    <!-- FOOTER  -->
+	
+	<!-- FOOTER  -->
     <div id="footer_wrap" class="outer">
       <footer class="inner">
-        <p class="copyright">Security-util maintained by <a href="https://github.com/remi-san">remi-san</a></p>
+        <p class="copyright">Library maintained by <a href="https://github.com/remi-san">remi-san</a></p>
         <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
       </footer>
     </div>
-
-    
-
+	
+	<script type="application/javascript">
+	$(function() {
+		$('.package-name').click(function(e) {
+			$(e.target).next().toggle();
+		});
+		$('.file').click(function(e) {
+			//$(e.target).next().toggle();
+		});
+	});
+	</script>
   </body>
 </html>
