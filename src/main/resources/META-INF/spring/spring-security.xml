@@ -1,0 +1,29 @@
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+    xmlns:beans="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- Loads ACL related configurations -->
+    <beans:import resource="security-acl-context.xml" />
+    
+    <beans:bean id="accessDeniedHandler"  class="net.remisan.security.controllers.errors.AccessDeniedHandlerImpl">
+        <beans:property name="errorPage" value="/forbidden.html" />
+    </beans:bean>
+    
+    <beans:bean id="customUserDetailsService" class="net.remisan.security.service.impl.CustomUserDetailsService" />
+    
+    <beans:bean id="saltSource" class="org.springframework.security.authentication.dao.ReflectionSaltSource" p:userPropertyToUse="username" />
+
+    <beans:bean id="passwordEncoder" class="org.springframework.security.authentication.encoding.Md5PasswordEncoder" />
+    
+    <authentication-manager>
+        <authentication-provider user-service-ref="customUserDetailsService">
+            <password-encoder ref="passwordEncoder">
+                <salt-source ref="saltSource" />
+            </password-encoder>
+        </authentication-provider>
+    </authentication-manager>
+
+</beans:beans>

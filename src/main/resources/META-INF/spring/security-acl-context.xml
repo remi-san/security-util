@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:security="http://www.springframework.org/schema/security"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:jdbc="http://www.springframework.org/schema/jdbc" 
+    xmlns:util="http://www.springframework.org/schema/util"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans 
+               http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/security 
+            http://www.springframework.org/schema/security/spring-security.xsd
+            http://www.springframework.org/schema/jdbc 
+            http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
+            http://www.springframework.org/schema/util
+            http://www.springframework.org/schema/util/spring-util.xsd
+            http://www.springframework.org/schema/context
+            http://www.springframework.org/schema/context/spring-context.xsd
+            http://www.springframework.org/schema/aop
+            http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <context:component-scan base-package="net.remisan.security" />
+
+    <!-- Enables method security with expression-based access control -->
+    <security:global-method-security secured-annotations="enabled" pre-post-annotations="enabled" proxy-target-class="true">
+        <!-- Reference to a custom expression handler with ACL support -->
+        <security:expression-handler ref="expressionHandler" />
+    </security:global-method-security>
+    
+    <!-- A customized expression handler
+        permissionEvaluator: a reference to a custom PermissionEvaluator
+        roleHierarchy: defines the role order -->
+    <bean id="expressionHandler" class="org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler"
+        p:permissionEvaluator-ref="permissionEvaluator"
+        p:roleHierarchy-ref="roleHierarchy" />
+    
+    <bean id="permissionFactory" class="net.remisan.security.permission.PermissionFactory"/>
+    
+    <!-- A customized PermissionEvaluator that evaluates permissions via the ACL module -->
+    <bean class="net.remisan.security.permission.AclPermissionEvaluator" id="permissionEvaluator">
+        <!-- Reference to the ACL service which performs JDBC calls to an ACL database -->
+        <constructor-arg ref="aclService"/>
+        <!-- Reference to the Permission Factory -->
+        <property name="permissionFactory" ref="permissionFactory"/>
+    </bean>
+
+    <!-- A customized ACL service which provides default JDBC implementation -->
+    <bean class="org.springframework.security.acls.jdbc.JdbcMutableAclService" id="aclService">
+        <constructor-arg ref="aclDatasource"/>
+        <constructor-arg ref="lookupStrategy"/>
+        <constructor-arg ref="aclCache"/>
+        <property name="classIdentityQuery" value="select currval('acl_class_seq')" />
+        <property name="sidIdentityQuery" value="select currval('acl_sid_seq')" />
+    </bean>
+    
+    <!-- A lookup strategy for optimizing database queries -->
+    <bean id="lookupStrategy" class="org.springframework.security.acls.jdbc.BasicLookupStrategy">
+        <constructor-arg ref="aclDatasource"/>
+        <constructor-arg ref="aclCache"/>
+        <constructor-arg ref="aclAuthorizationStrategy"/>
+        <constructor-arg ref="auditLogger"/>
+        <!-- Reference to the Permission Factory -->
+        <property name="permissionFactory" ref="permissionFactory"/>
+    </bean>
+    
+    <!-- Database -->
+    <util:properties id="aclParams" location="classpath:acl.properties" />
+    <bean id="aclDatasource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
+         destroy-method="close"
+         p:driverClass="#{aclParams[driverClassName]}"
+         p:jdbcUrl="#{aclParams[url]}"
+         p:user="#{aclParams[username]}"
+         p:password="#{aclParams[password]}"
+         p:acquireIncrement="5"
+         p:idleConnectionTestPeriod="60"
+         p:maxPoolSize="100"
+         p:maxStatements="50"
+         p:minPoolSize="10" />
+
+    <!-- An ACL cache to minimize calls to the ACL database -->   
+    <bean id="aclCache" class="org.springframework.security.acls.domain.EhCacheBasedAclCache">
+        <constructor-arg>
+            <bean class="org.springframework.cache.ehcache.EhCacheFactoryBean">
+                <property name="cacheManager">
+                    <bean class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean"/>
+                </property>
+                <property name="cacheName" value="aclCache"/>
+            </bean>
+        </constructor-arg>
+    </bean>
+
+    <!-- An ACL authorization strategy to determine whether a principal is permitted to call administrative methods -->
+    <bean id="aclAuthorizationStrategy" class="org.springframework.security.acls.domain.AclAuthorizationStrategyImpl">
+        <constructor-arg>
+            <list>
+                <bean class="org.springframework.security.core.authority.SimpleGrantedAuthority">
+                    <constructor-arg value="ROLE_ADMIN"/>
+                </bean>
+                <bean class="org.springframework.security.core.authority.SimpleGrantedAuthority">
+                    <constructor-arg value="ROLE_ADMIN"/>
+                </bean>
+                <bean class="org.springframework.security.core.authority.SimpleGrantedAuthority">
+                    <constructor-arg value="ROLE_ADMIN"/>
+                </bean>
+            </list>
+        </constructor-arg>
+    </bean>
+ 
+     <!-- An audit logger used to log audit events -->
+    <bean id="auditLogger" class="org.springframework.security.acls.domain.ConsoleAuditLogger"/>
+    
+    <!-- Defines the role order -->
+     <!-- http://static.springsource.org/spring-security/site/docs/3.0.x/apidocs/org/springframework/security/access/hierarchicalroles/RoleHierarchyImpl.html -->
+    <bean id="roleHierarchy"  class="org.springframework.security.access.hierarchicalroles.RoleHierarchyImpl">
+        <property name="hierarchy">
+            <value>
+                ROLE_ADMIN > ROLE_MODERATOR
+                ROLE_USER > ROLE_VISITOR
+            </value>
+        </property>
+    </bean>
+    
+</beans>

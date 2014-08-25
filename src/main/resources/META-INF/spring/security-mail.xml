@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    
+    <bean id="emailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host" value="${mail.host}" />
+        <property name="port" value="${mail.port}" />
+        <property name="protocol" value="${mail.protocol}" />
+        <property name="username" value="${mail.username}" />
+        <property name="password" value="${mail.password}" />
+        <property name="javaMailProperties">
+            <props>
+                <prop key="mail.smtp.auth">${mail.properties.smtp.auth}</prop>
+                <prop key="mail.smtp.starttls.enable">${mail.properties.smtp.starttls.enable}</prop>
+                <prop key="mail.smtp.quitwait">${mail.properties.smtp.quitwait}</prop>
+            </props>
+        </property>
+    </bean>
+    
+    <bean id="emailFrom" class="javax.mail.internet.InternetAddress">
+        <constructor-arg value="remi.san@gmail.com" />
+        <constructor-arg value="Java Rémi" />
+    </bean>
+    
+    <bean id="defaultEmailSender" class="net.remisan.security.email.impl.DefaultEmailSender">
+        <property name="defaultEmailSender">
+            <map>
+                <entry key="baseUrl" value="${app.baseUrl}"/>
+            </map>
+        </property>
+    </bean>
+</beans>

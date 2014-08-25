@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util" xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+    
+    <context:annotation-config />
+    <context:component-scan base-package="net.remisan.security" />
+    
+    <bean id="defaultUtil" class="net.remisan.security.util.BaseUtil" />
+    <bean id="userUtil" class="net.remisan.security.util.UserUtil" />
+    
+    <bean id="modelUtilFactory" class="net.remisan.security.util.factory.ModelUtilFactory">
+        <property name="utilList">
+            <map>
+               <entry key="net.remisan.security.model.SecurityUser" value-ref="userUtil"/>
+               <entry key="default" value-ref="defaultUtil"/>
+            </map>
+        </property>
+    </bean>
+    
+    <bean id="objectValidator" class="net.remisan.base.model.validation.ValidationManager">
+        <constructor-arg>
+            <list>
+                <bean class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
+                <bean class="net.remisan.security.validation.UserValidator" />
+            </list>
+        </constructor-arg>
+    </bean>
+    
+    <bean id="formValidator" class="net.remisan.base.model.validation.ValidationManager">
+        <constructor-arg>
+            <list>
+                <bean class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
+                <bean class="net.remisan.security.validation.InscriptionFormValidator" />
+                <bean class="net.remisan.security.validation.ResetPasswordFormValidator" />
+            </list>
+        </constructor-arg>
+    </bean>
+    
+    <bean id="securityServiceRegistry" class="net.remisan.security.registry.SecurityServiceRegistry">
+        <constructor-arg name="objects">
+            <map>
+                <entry key="user"><bean class="net.remisan.security.service.impl.UserServiceImpl" /></entry>
+                <entry key="role"><bean class="net.remisan.security.service.impl.RoleServiceImpl" /></entry>
+            </map>
+        </constructor-arg>
+     </bean>
+</beans>
