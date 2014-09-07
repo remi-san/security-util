@@ -41,8 +41,8 @@
     <bean id="securityServiceRegistry" class="net.remisan.security.registry.SecurityServiceRegistry">
         <constructor-arg name="objects">
             <map>
-                <entry key="user"><bean class="net.remisan.security.service.impl.UserServiceImpl" /></entry>
-                <entry key="role"><bean class="net.remisan.security.service.impl.RoleServiceImpl" /></entry>
+                <entry key="user"><bean class="net.remisan.security.service.impl.SecurityUserServiceImpl" /></entry>
+                <entry key="role"><bean class="net.remisan.security.service.impl.SecurityRoleServiceImpl" /></entry>
             </map>
         </constructor-arg>
      </bean>

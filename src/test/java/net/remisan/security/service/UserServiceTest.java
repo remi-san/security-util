@@ -31,7 +31,7 @@ import org.springframework.validation.BindException;
 public class UserServiceTest {
 
     @Autowired
-    private UserService service;
+    private SecurityUserService service;
     
     @Autowired
     private SecurityRoleRepository roleRepository;

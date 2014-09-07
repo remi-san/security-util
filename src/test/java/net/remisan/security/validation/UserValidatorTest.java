@@ -7,7 +7,7 @@ import org.junit.Assert;
 import net.remisan.security.model.BaseSecurityUser;
 import net.remisan.security.model.SecurityUser;
 import net.remisan.security.model.mock.MockSecurityRole;
-import net.remisan.security.service.UserService;
+import net.remisan.security.service.SecurityUserService;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -26,7 +26,7 @@ public class UserValidatorTest {
     private UserValidator validator;
     
     @Autowired
-    private UserService service;
+    private SecurityUserService service;
     
     private SecurityUser user;
     

@@ -13,7 +13,7 @@ import net.remisan.security.form.BaseInscriptionForm;
 import net.remisan.security.form.BasePasswordForm;
 import net.remisan.security.form.InscriptionForm;
 import net.remisan.security.model.SecurityUser;
-import net.remisan.security.service.UserService;
+import net.remisan.security.service.SecurityUserService;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +35,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class SecurityNavigation extends BaseController {
 
     @Autowired
-    protected UserService userService;
+    protected SecurityUserService userService;
 
     @Autowired
     @Qualifier("formValidator")
