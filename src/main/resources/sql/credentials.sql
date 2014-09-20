@@ -1,4 +1,4 @@
-﻿DROP SCHEMA credentials CASCADE;
+﻿DROP SCHEMA IF EXISTS credentials CASCADE;
 CREATE SCHEMA credentials;
 
 -- ROLES
@@ -90,7 +90,7 @@ INSERT INTO credentials.roles (role_id, role_name) VALUES (4, 'ROLE_VISITOR');
 
 INSERT INTO credentials.users
     (user_id, user_login, user_email, user_password, user_enabled, user_activation_token)
-    VALUES (1, 'admin', 'remi.san@gmail.com', 'ceb4f32325eda6142bd65215f4c0f371', true, 'bfb8e810-c22d-11e3-8a33-0800200c9a66');
+    VALUES (1, 'admin', 'admin@dummy.com', 'ceb4f32325eda6142bd65215f4c0f371', true, 'bfb8e810-c22d-11e3-8a33-0800200c9a66');
 
 INSERT INTO credentials.user_roles (user_id, role_id) VALUES (1, 1);
 INSERT INTO credentials.user_roles (user_id, role_id) VALUES (1, 2);
