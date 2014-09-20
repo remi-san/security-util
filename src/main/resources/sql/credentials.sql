@@ -32,7 +32,7 @@ CREATE TABLE credentials.users (
     user_email character varying(255) NOT NULL,
     user_password character varying(50) NOT NULL,
     user_enabled boolean DEFAULT false,
-    user_activation_token character varying(50) NOT NULL,
+    user_activation_token character varying(50),
     user_creation_date timestamp with time zone,
     user_account_expiration_date timestamp with time zone,
     user_credentials_expiration_date timestamp with time zone,
