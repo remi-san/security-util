@@ -22,8 +22,7 @@
          p:maxStatements="50"
          p:minPoolSize="10" />
     
-    <bean id="emf"
-        class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+    <bean id="emf" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="dataSource" ref="datasource" />
         <property name="persistenceUnitName" value="hib" />
     </bean>

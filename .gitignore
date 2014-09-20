@@ -15,9 +15,6 @@ hs_err_pid*
 /target
 .checkstyle
 .springBeans
-.classpath
-.settings
-.project
 
 # config
 /settings.xml

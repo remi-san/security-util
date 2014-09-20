@@ -28,16 +28,6 @@
         </constructor-arg>
     </bean>
     
-    <bean id="formValidator" class="net.remisan.base.model.validation.ValidationManager">
-        <constructor-arg>
-            <list>
-                <bean class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
-                <bean class="net.remisan.security.validation.InscriptionFormValidator" />
-                <bean class="net.remisan.security.validation.ResetPasswordFormValidator" />
-            </list>
-        </constructor-arg>
-    </bean>
-    
     <bean id="securityServiceRegistry" class="net.remisan.security.registry.SecurityServiceRegistry">
         <constructor-arg name="objects">
             <map>
