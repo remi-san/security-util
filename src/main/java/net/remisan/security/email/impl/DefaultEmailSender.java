@@ -7,8 +7,8 @@ import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
-import net.remisan.security.email.AbstractEmailManager;
-import net.remisan.security.email.EmailManager;
+import net.remisan.base.email.AbstractEmailManager;
+import net.remisan.base.email.EmailManager;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;

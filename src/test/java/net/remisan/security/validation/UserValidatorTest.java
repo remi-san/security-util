@@ -4,6 +4,7 @@ import javax.transaction.Transactional;
 
 import org.junit.Assert;
 
+import net.remisan.base.model.validation.UserValidator;
 import net.remisan.security.model.BaseSecurityUser;
 import net.remisan.security.model.SecurityUser;
 import net.remisan.security.model.mock.MockSecurityRole;

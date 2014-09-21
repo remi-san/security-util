@@ -39,6 +39,9 @@ public class UserRepositoryTest {
     @Test
     public void testInsertSelectUpdateDelete() throws Exception {
         
+    	List<SecurityUser> users = (List<SecurityUser>) this.userRepository.findAll();
+    	int count = users.size();
+    	
         String login = "user1";
         String email = "user1@dummy.com";
         String password = "pwd";
@@ -95,8 +98,8 @@ public class UserRepositoryTest {
         this.userRepository.delete(user2);
         Assert.assertNull(this.userRepository.findOne(user2Id));
         
-        List<SecurityUser> users = (List<SecurityUser>) this.userRepository.findAll();
-        Assert.assertEquals(1, users.size());
+        users = (List<SecurityUser>) this.userRepository.findAll();
+        Assert.assertEquals(count+1, users.size());
         
         this.userRepository.flush();
     }

@@ -3,8 +3,9 @@ package net.remisan.security.util.factory;
 import java.util.HashMap;
 import java.util.Map;
 
-import net.remisan.security.util.BaseUtil;
-import net.remisan.security.util.ModelUtil;
+import net.remisan.base.util.BaseUtil;
+import net.remisan.base.util.ModelUtil;
+import net.remisan.base.util.factory.ModelUtilFactory;
 import net.remisan.security.util.UserUtil;
 
 import org.junit.Assert;

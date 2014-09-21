@@ -13,6 +13,15 @@
     <task:executor id="executor" pool-size="7"/>
     
     <import resource="classpath:/META-INF/spring/security-objects-context.xml" />
+    <bean id="objectValidator" class="net.remisan.base.model.validation.ValidationManager">
+        <constructor-arg>
+            <list>
+                <bean class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
+                <bean class="net.remisan.base.model.validation.UserValidator" />
+            </list>
+        </constructor-arg>
+    </bean>
+    
     <import resource="classpath:/META-INF/spring/spring-security.xml" />
     <import resource="classpath:/META-INF/spring/security-mail.xml" />
     <import resource="classpath:/META-INF/spring/base-controller.xml" />

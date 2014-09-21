@@ -1,5 +1,7 @@
 package net.remisan.security.service;
 
+import java.util.UUID;
+
 import javax.transaction.Transactional;
 
 import net.remisan.security.model.BaseSecurityUser;
@@ -95,6 +97,8 @@ public class UserServiceTest {
         
         SecurityUser persistableUser = this.service.getPersistableUser(user);
         Assert.assertEquals(user.getLogin(), persistableUser.getLogin());
+        
+        user.setActivationToken(UUID.randomUUID().toString());
         
         // Create
         this.service.save(user);

@@ -7,10 +7,10 @@
     <context:annotation-config />
     <context:component-scan base-package="net.remisan.security" />
     
-    <bean id="defaultUtil" class="net.remisan.security.util.BaseUtil" />
+    <bean id="defaultUtil" class="net.remisan.base.util.BaseUtil" />
     <bean id="userUtil" class="net.remisan.security.util.UserUtil" />
     
-    <bean id="modelUtilFactory" class="net.remisan.security.util.factory.ModelUtilFactory">
+    <bean id="modelUtilFactory" class="net.remisan.base.util.factory.ModelUtilFactory">
         <property name="utilList">
             <map>
                <entry key="net.remisan.security.model.SecurityUser" value-ref="userUtil"/>
@@ -18,22 +18,4 @@
             </map>
         </property>
     </bean>
-    
-    <bean id="objectValidator" class="net.remisan.base.model.validation.ValidationManager">
-        <constructor-arg>
-            <list>
-                <bean class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
-                <bean class="net.remisan.security.validation.UserValidator" />
-            </list>
-        </constructor-arg>
-    </bean>
-    
-    <bean id="securityServiceRegistry" class="net.remisan.security.registry.SecurityServiceRegistry">
-        <constructor-arg name="objects">
-            <map>
-                <entry key="user"><bean class="net.remisan.security.service.impl.SecurityUserServiceImpl" /></entry>
-                <entry key="role"><bean class="net.remisan.security.service.impl.SecurityRoleServiceImpl" /></entry>
-            </map>
-        </constructor-arg>
-     </bean>
 </beans>
